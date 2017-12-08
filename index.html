@@ -6,9 +6,40 @@
 	<link rel="stylesheet" href="assets/css/reset.css">
 	<!-- custom styling -->
 	<link rel="stylesheet" href="assets/css/style.css">
+	<!-- fontawesome cdn -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<title>Hangman Game</title>
 </head>
 <body>
+	<!-- <h1>hello world</h1> -->
+	<div class="wrapper">
+		<div class="title">
+			<h1>90's Nostalgia</h1>
+			<p>A Hangman game</p>
+		</div>
+
+		<hr />
+		<div class="rules">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione inventore voluptatibus, officiis, fugiat sit sunt necessitatibus consectetur minima blanditiis laudantium deserunt, soluta ad quidem mollitia quasi, nihil aperiam ab. Quia.</p>
+		</div>
+
+		<hr />
+		<div id="game"></div>
+		<div id="scoreboard">
+			<p>Press any key to get started!</p>
+			<p>Wins: <span id="wins"></span></p>
+			<p>Current Word...</p>
+			<p id="currentWord"></p>
+			<p id="guesses"></p>
+			<p id="lettersGuessed">Letters already guessed...</p>
+		</div>
+		
+		
+	</div>
+
+	<div class="footer">
+			<span>Built with <i class="fa fa-coffee" aria-hidden="true"></i> by Jason Goncalves</span>
+		</div>	
 	<script src="assets/javascript/game.js"></script>
 </body>
 </html>

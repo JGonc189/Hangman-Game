@@ -6,11 +6,8 @@
 	position: relative;
 }
 
-body {	
-	background: #948e99; /* fallback for old browsers */
-	background: -webkit-linear-gradient(#948e99, #2e1437);
-	background: -o-linear-gradient(#948e99, #2e1437);
-	background: linear-gradient(#948e99, #2e1437); /* Chrome 10-25, Safari 5.1-6 */ /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+html {	
+	background: url('../images/avengers.jpg');
 }	
 
 h1,
@@ -33,39 +30,49 @@ span {
 }
 
 .title h1 {
+	color: #fff;
 	font-weight: 500;
 	font-size: 3.625rem;
-	text-align: center;
+	text-align: left;
 	line-height: 1;
 	letter-spacing: 1;
 }	
 
 .title p {
+	color: #fff;
 	font-size: 2.125rem;
-	text-align: center;
+	text-align: left;
 	line-height: 1;
 	letter-spacing: 1;
 	padding: 1.125rem;
 }	
 
+hr {
+	width: 28.125rem;
+
+}
+.rules {
+	width: 28.125rem;
+}
 .rules p {
+	color: #fff;
 	font-size: 1.125rem;
-	text-align: center;
+	text-align: left;
 	line-height: 1;
 	letter-spacing: 1;
 	padding: 1.125rem;
 }
 
-#game,
 #scoreboard {
-	background-color: #141414;
+	background-color: rgba(20, 20, 20, .5);
+
 	border: 0.125rem solid #fff;
 	width: 28.125rem;
-	height: 37.5rem;
+	height: 18.125rem;
 	display: inline-block;
 	float: left;
-	left: 130px;
-	margin: 1.125rem;
+	/*left: 50px;*/
+	margin: 1.125rem 0;
 
 }	
 
@@ -78,14 +85,15 @@ span {
 .footer {
 	clear: both;
 	margin: 0;
-	background-color: #ccc;
-	border-top: 0.125rem solid #141414;
+	background-color: rgba(20, 20, 20, .75);
+	border-top: 0.125rem solid rgba(144,22,38, .5);
 	height: 2.8125rem;
 	width: 100%;
 }	
 
-.footer span {
-	color: #141414;
+.footer p {
+	color: #ccc;
 	font-size: 0.75rem;
 	text-align: center;
+	line-height: 3.5;
 }

@@ -1,81 +1,185 @@
-// const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+// Used to record how many times a letter can be pressed
+let alphabet = [
+		'a','b','c',
+		'd','e','f',
+		'g','h','i',
+		'j','k','l',
+		'm','n','o',
+		'p','q','r',
+		's','t','u',
+		'v','w','x',
+		'y','z'
+	];
+//Holds the all the words
+let words =[
+		'hulk',
+		'thor',
+		'iron man',
+		'captain america',
+		'nick fury',
+		'jarvis',
+		'black widow',
+		'loki'
+	];
+//Holds randomWord
+let randomWord = "";
+//Holds letters in the word
+let letters = [];
+//Holds number of blanks in the word
+let numberOfBlanks = 0;
+//Holds Blanks and correct letter guesses
+let blanks =[];
+//Holds incorrect letter guesses
+let incorrect = [];
+//Counters
+let win = 0;
+let guesses = 9;
+let correct = 0;
 
-// an array of categories and topics from the 90s
-const words = [
-	'Friends',
-	'The Rugrats',
-	'Bill Clinton',
-	'Hey Arnold',
-	'Tamagotchi',
-	'Tupac',
-	'Biggie',
-	'Nirvana',
-	'TLC',
-	'Pulp Fiction',
-	'Forrest Gump',
-	'Beanie Babies',
-	'Milky Pens',
-	'Dunkaroos',
-	'Will Smith'
-];
 
-// guesses remanining 
+function resetGame()
+{
+	//Chooses word randombly from the words
+	randomWord = words[Math.floor(Math.random() * words.length)];
+	//Splits the randomWord into individual letters
+	letters = randomWord.split('');
+	//Get the number of blanks
+	numberOfBlanks = letters.length;
+	
+	// set variables back to default
+	letterGuessed = 0;
+	correct = 0;
+	guesses = 9;
+	incorrect =[];
+	blanks =[];
+	alphabet = [
+		'a','b','c',
+		'd','e','f',
+		'g','h','i',
+		'j','k','l',
+		'm','n','o',
+		'p','q','r',
+		's','t','u',
+		'v','w','x',
+		'y','z'
+	];
+	// test = false;
+	startGame();
+}
+function startGame()
+{
+	//Chooses word randombly from the words
+	randomWord = words[Math.floor(Math.random() * words.length)];
+	//Splits the randomWord into individual letters
+	letters = randomWord.split('');
+	//Get the number of blanks
+	numberOfBlanks = letters.length;
+	
+	// set variables back to default
+	correct = 0;
+	guesses = 9;
+	incorrect =[];
+	blanks =[];
+	alphabet = [
+		'a','b','c',
+		'd','e','f',
+		'g','h','i',
+		'j','k','l',
+		'm','n','o',
+		'p','q','r',
+		's','t','u',
+		'v','w','x',
+		'y','z'
+	];
 
-let guesses = 10;
-
-// win counter
-
-let wins = 0
-
-// function is run whenever player presses a key
-window.addEventListener('keyup', function(event){
-	// determines if a key has been pressed
-	const userGuess = event.key;
-
-	// generate a random word from words array
-	const randomWord = words[Math.floor(Math.random() * words.length)];
-	console.log(randomWord);
-
-	// set a variable for letter blanks
-	let blanks = '';
-	// split string into individual letters
-	for (let i = 0; i < randomWord.length; i++) {
-		console.log(randomWord.charAt(i));
-		blanks = ' _ ' + ' '+ blanks;
-		console.log(blanks);
-		document.querySelector('#currentWord').innerHTML = blanks;
+	//Populate the blanks
+	for(var i = 0; i< numberOfBlanks; i++)
+	{
+		blanks.push('_');
+		document.getElementById('underscores').innerHTML = blanks;
 	}
 
-	document.querySelector('#guesses').innerHTML = 'Number of guesses remaining... ' + guesses;
-});
+	// dom manipulation 
+	document.getElementById('underscores').innerHTML = blanks.join(' ');
+	document.getElementById('guesses').innerHTML = guesses;
+	document.getElementById('wins').innerHTML = win;
+	document.getElementById('incorrect').innerHTML = incorrect;
+	// Testing / Debugging
+	// console.log(randomWord);
+	// console.log(letters);
+	// console.log(numberOfBlanks);
+	// console.log(blanks);
+}
 
-// function letterBlanks(blanks){
-// 	let result = '';
-// 	for (let i = 0; i < blanks.length; i++) {
-// 		result = "_" + result;
-// 	}
+function compareLetters(userKey)
+{
+				console.log('WORKING!');
+				//If guess was correct 
+				if(randomWord.indexOf(userKey) > -1)
+				{
+					//Loops depending on the amount of blanks 
+					for(var i = 0; i < numberOfBlanks; i++)
+					{
+						//Fills in right index with user key
+						if(letters[i] === userKey)
+						{
+							correct++;
+							blanks[i] = userKey;
+							document.getElementById('underscores').innerHTML = blanks.join(' ');
+						}	
+					}
+					//Test / Debug
+					// console.log(blanks);
+				}
+				// if the guess was incorrect
+				else
+				{
+					incorrect.push(userKey);
+					guesses--;
+					// dom manipulation
+					document.getElementById('guesses').innerHTML = guesses;
+					document.getElementById('incorrect').innerHTML = incorrect;
+					//Test / Debug
+					// console.log('Wrong Letters = ' + incorrect);
+					// console.log('Guesses left are ' + guesses);
+				}
+			
+			
+		
+}
+function counter()
+{
+	// When number blanks if filled with right letters then you win
+	if(correct === numberOfBlanks)
+	{
+		//Counts Wins 
+		win++;
+		// dom manipulation
+		document.getElementById('wins').innerHTML = win;
+		alert('You Win');
+		resetGame();
+	}
+	
+}
 
+startGame();
 
+document.onkeyup = function(event)
+{
+	// test = true;
+	var letterGuessed = event.key;
+	for(var i = 0; i < alphabet.length; i++)
+	{	
+		if(letterGuessed === alphabet[i] && test === true)
+		{
+			var spliceDword = alphabet.splice(i,1);
+			//Test / Debug
+			// console.log('Double word is = ' + alphabet[i])
+			// console.log('Spliced Word is = ' + spliceDword);
 
-// const messages = {
-// 	win: 'You Win!',
-// 	lost: 'You Lost!',
-// 	guessed: 'You already guessed that letter, please try again.',
-// 	validLetter: 'Please enter a valid letter'
-// };
-
-// show how many guesses
-
-// input information onto html document
-
-// we want to get a random word from the array.
-// function play(){
-// 	return words[Math.floor(Math.random() * words.length)];
-// }
-
-
-
-// 	return result;
-// }
-// play();
-// letterBlanks();
+			compareLetters(letterGuessed);
+			counter();
+		}
+	}		
+		
+}

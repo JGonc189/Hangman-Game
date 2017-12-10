@@ -19,7 +19,13 @@ let words = [
     'nick fury',
     'jarvis',
     'black widow',
-    'loki'
+    'loki',
+    'spider man',
+    'ant man',
+    'wasp',
+    'hawkeye',
+    'quicksilver',
+    'blackpanther'
 ];
 //Holds randomWord
 let randomWord = "";
@@ -33,7 +39,7 @@ let blanks = [];
 let incorrect = [];
 //Counters
 let win = 0;
-let guesses = 9;
+let guesses = 5;
 let correct = 0;
 
 function resetGame() { // we will reset when the game is over
@@ -47,7 +53,7 @@ function resetGame() { // we will reset when the game is over
     // set variables back to default
     letterGuessed = 0;
     correct = 0;
-    guesses = 9;
+    guesses = 5;
     incorrect = [];
     blanks = [];
     alphabetWithSpace = [
@@ -61,7 +67,7 @@ function resetGame() { // we will reset when the game is over
         'v', 'w', 'x',
         'y', 'z', ' '
     ];
-    startTheGame = false;
+    let startTheGame = false;
     startGame(); // start new game
 }
 
@@ -75,7 +81,7 @@ function startGame() {
 
     // set variables back to default
     correct = 0;
-    guesses = 9;
+    guesses = 5;
     incorrect = [];
     blanks = [];
     alphabetWithSpace = [
@@ -138,11 +144,12 @@ function counter() {
     // when the guesses reach zero, remind the player that they lost and could not save the planet T___T
     if (guesses === 0) {
     	// dom manipulation
-    	document.getElementById('result').innerHTML = "Wow, you lost ¯\_(ツ)_/¯";
+    	document.getElementById('result').innerHTML = "Wow, you lost ¯\\_(ツ)_/¯";
+    	resetGame();
     }
 }
 window.onkeyup = function(event) {
-    startTheGame = true;
+    let startTheGame = true;
     let letterGuessed = event.key;
     for (let i = 0; i < alphabetWithSpace.length; i++) {
         if (letterGuessed === alphabetWithSpace[i] && startTheGame === true) {

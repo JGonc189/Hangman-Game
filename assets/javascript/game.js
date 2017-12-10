@@ -67,7 +67,7 @@ function resetGame() { // we will reset when the game is over
         'v', 'w', 'x',
         'y', 'z', ' '
     ];
-    let startTheGame = false;
+    let startTheGame = false; // we want to makesure that the game hasnt started.
     startGame(); // start new game
 }
 
@@ -149,7 +149,7 @@ function counter() {
     }
 }
 window.onkeyup = function(event) {
-    let startTheGame = true;
+    let startTheGame = true; // we want to make sure the game can start 
     let letterGuessed = event.key;
     for (let i = 0; i < alphabetWithSpace.length; i++) {
         if (letterGuessed === alphabetWithSpace[i] && startTheGame === true) {
